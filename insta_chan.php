@@ -79,9 +79,6 @@
         height: auto;
       }
 
-    
-
-
     </style>
 
     <title>InstaChan</title>
@@ -115,7 +112,7 @@
     <?php
     $array["instadb"] = array_reverse($array["instadb"],TRUE);
     foreach ($array["instadb"] as $id => $item) {
-      echo '#' . $id . ' @ ' . $item["time"] . '<br>' . $item["user"] . ':<br><p class="msg">' . $item["msg"] . '</p><br>';
+      echo '#' . $id . ' @ ' . $item["time"] . ' >> <strong>' . $item["user"] . ':</strong><br><p class="msg">' . $item["msg"] . '</p><br>';
       if($item["img_path"] != FALSE) echo '<a href="' . $item["img_path"] . '"><img class="img_thumb" src="' . $item["img_path"] . '"></a>';
       echo "<hr>";
     } ?>
