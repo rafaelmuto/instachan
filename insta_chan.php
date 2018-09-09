@@ -79,9 +79,7 @@
         height: auto;
       }
 
-      .msg{
-
-      }
+    
 
 
     </style>
