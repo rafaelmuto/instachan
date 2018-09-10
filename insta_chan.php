@@ -152,7 +152,7 @@
         file_put_contents("instadb.json",json_encode($array));
       }
 
-      if($_POST!=[] && $_POST["user"]!=[] && $_POST["msg"]!=[] && $_POST["passw"]!=[]){
+      if($_POST!=[] && $_POST["user"]!=="" ){
         $post["time"] = date("YmdHis");
         $post["user"] = $_POST["user"];
         $post["passw"] = password_hash($_POST["passw"], PASSWORD_DEFAULT);
