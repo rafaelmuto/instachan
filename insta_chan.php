@@ -20,10 +20,12 @@
     <meta charset="utf-8">
     <style media="screen">
       :root{
-        --max_w: 950px;
+        --max_w: 900px;
         --thumb_w: 100px;
         --color_post_odd: #ecf0f1;
         --color_post_even: #bdc3c7;
+        --color_btn: #e74c3c;
+        --color_bord: #7f8c8d;
       }
       *{
         font-family: monospace;
@@ -37,15 +39,16 @@
       }
 
       .form_post{
-        width: var(--max_w);
-        border: 1px solid;
+        max-width: var(--max_w);
+        border-radius: 20px 20px 0 0;
+        border: 1px solid var(--color_bord);
         margin: 0 auto;
         padding: 10px;
       }
 
       input{
         border: 0;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid #7f8c8d;
         margin-bottom: .5em;
       }
 
@@ -60,7 +63,7 @@
 
       .btn {
         padding: 1rem 2rem;
-        border: 1px solid black;
+        border: 1px solid var(--color_bord);
         background: transparent;
         font-size: 0.9em;
         border-radius: 2px;
@@ -69,17 +72,20 @@
 
       .btn:hover {
         cursor: pointer;
-        background: black;
+        background: var(--color_btn);
         color: white;
+        border: 1px solid white;
       }
 
       .board{
         max-width: var(--max_w);
         margin: 0 auto;
+        border-left: 1px solid var(--color_bord);
+        border-right: 1px solid  var(--color_bord);
       }
 
       .post{
-        border-bottom: 1px solid;
+        border-bottom: 1px solid var(--color_bord);
         padding: 5px;
         padding-top: 0;
         display: grid;
@@ -116,8 +122,9 @@
         max-width: var(--max_w);
         padding: 10px;
         margin: 0 auto;
-        border: 1px solid;
+        border: 1px solid var(--color_bord);
         border-top: 0;
+        border-radius: 0 0 20px 20px;
       }
 
     </style>
@@ -188,7 +195,7 @@
     <div class="del_post">
       <form action="#" method="get">
         id: <input type="text" name="del_id">
-        del_code: <input type="password" name="del_code">
+        delete code: <input type="password" name="del_code">
         <button type="submit" name="submit">delete</button>
       </form>
     </div>
