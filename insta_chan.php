@@ -129,14 +129,14 @@
 
     </style>
 
-    <title>InstaChan</title>
+    <title>ᶘ ᵒᴥᵒᶅ InstaChan</title>
   </head>
 
   <body>
 
     <!-- POST FORM -->
     <div class="form_post">
-      <h1>InstaChan v0</h1>
+      <h1>ᶘ ᵒᴥᵒᶅ InstaChan v0</h1>
       a one file solution for image BBS.
       <hr>
       <form action="#" method="post" enctype="multipart/form-data">
