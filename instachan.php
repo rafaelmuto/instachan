@@ -1,4 +1,4 @@
-<!-- InstaChan v0-->
+<!-- InstaChan-->
 <!-- a one file solution for image BBS. -->
 <!-- by: rafaelmuto -->
 <!DOCTYPE html>
@@ -10,8 +10,20 @@
     $array = ["instadb"=>[]];
   }
 
-  if(!is_dir("img/")){
-    mkdir("img/");
+  if(!is_dir("instafolder/")){
+    mkdir("instafolder/");
+  }
+
+  if(isset($_POST["new_custom_name"])){
+    $config = [];
+    $config["custom_name"] = $_POST["new_custom_name"];
+    $config["master_code"] = password_hash($_POST["new_master_code"], PASSWORD_DEFAULT);
+    $config["ppp"] = $_POST["new_ppp"];
+    $config["killme"] = $_POST["new_killme"];
+    $config["killdate"] = $_POST["new_killdate"];
+    $config["bcolor"] = $_POST["new_bcolor"];
+    file_put_contents("instaconfig.json",json_encode($config));
+    unset($_POST["new_custom_name"]);
   }
  ?>
 
@@ -21,13 +33,15 @@
     <style media="screen">
       :root{
         --max_w: 900px;
-        --thumb_w: 100px;
+        --config_w:450px;
+        --thumb_w: 200px;
+        --color_back: white;
         --color_post_odd: #ecf0f1;
         --color_post_even: #bdc3c7;
         --color_btn: #e74c3c;
         --color_bord: #7f8c8d;
       }
-      
+
       *{
         font-family: monospace;
         margin: 0;
@@ -37,12 +51,28 @@
 
       body{
         padding: 10px;
+        /* background-color: red; */
+      }
+
+      .instachan_container{
+        margin: 50px auto;
+        background-color: var(--color_back);
+        border: 1px solid var(--color_bord);
+        box-shadow: 5px 5px var(--color_bord);
+        max-width: var(--max_w);
+        border-radius: 20px;
+      }
+
+      .config_container{
+        max-width: var(--config_w);
+      }
+
+      .form_config{
+        padding: 10px;
       }
 
       .form_post{
-        max-width: var(--max_w);
-        border-radius: 20px 20px 0 0;
-        border: 1px solid var(--color_bord);
+        border-bottom: 1px solid var(--color_bord);
         padding: 10px;
       }
 
@@ -55,13 +85,6 @@
       textarea{
         resize: none;
         width: 100%;
-      }
-
-      .container{
-        margin: 0 auto;
-        box-shadow: 5px 5px var(--color_bord);
-        max-width: var(--max_w);
-        border-radius: 20px;
       }
 
       .line{
@@ -81,13 +104,6 @@
         background: var(--color_btn);
         color: white;
         border: 1px solid white;
-      }
-
-      .board{
-        max-width: var(--max_w);
-        margin: 0 auto;
-        border-left: 1px solid var(--color_bord);
-        border-right: 1px solid  var(--color_bord);
       }
 
       .post{
@@ -125,25 +141,56 @@
       }
 
       .del_post{
-        max-width: var(--max_w);
         padding: 10px;
-        border: 1px solid var(--color_bord);
         border-top: 0;
         border-radius: 0 0 20px 20px;
       }
 
     </style>
 
-    <title>ᶘ ᵒᴥᵒᶅ InstaChan</title>
+    <title>InstaChan v0.1</title>
   </head>
 
   <body>
-    <div class="container">
+    <?php if(!file_exists("instaconfig.json")): ?>
+    <!-- CONFIG -->
+    <div class="instachan_container config_container">
+      <div class="form_config">
+        <h1>ʕ•ᴥ•ʔ InstaConfig</h1>
+        a one file solution for image BBS.
+        <hr>
+        <h3>Instructions:</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <hr>
+        <form class="" action="#" method="post">
+          <label for="new_custom_name">Custom Name:</label><input class="line" type="text" name="new_custom_name" value="ᶘ ᵒᴥᵒᶅ InstaChan!"><br>
+          <label for="new_master_code">Master Code:</label><input class="line" type="Password" name="new_master_code" value=""><br>
+          <label for="new_ppp">Posts per page:</label>
+          <select class="line" name="new_ppp" value="single_page">
+            <option value="single_page">single page</option>
+            <option value="5">5 posts/page</option>
+            <option value="10">10 posts/page</option>
+            <option value="20">20 posts/page</option>
+            <option value="50">50 posts/page</option>
+            <option value="100">100 posts/page</option>
+          </select>
+          <label for="new_killme">Auto Delete after # posts:</label><input class="line" type="text" name="new_killme" value=0><br>
+          <label for="new_killdate">Expiration date:</label><input class="line" type="date" name="new_killdate" value="2038-01-19">
+          <label for="new_bcolor">Background Color</label><input class="line" type="color" name="new_bcolor" value="#ffffff">
+          <br>
+          <button class="btn line" type="submit" name="button">Create BBS!</button>
+        </form>
+      </div>
+
+    </div>
+
+    <?php else: ?>
+    <div class="instachan_container">
 
       <!-- POST FORM -->
       <div class="form_post">
-        <h1>ᶘ ᵒᴥᵒᶅ InstaChan v0</h1>
-        a one file solution for image BBS.
+        <h1>ᶘ ᵒᴥᵒᶅ InstaChan</h1>
+        InstaChan a one file solution for image BBS.
         <hr>
         <form action="#" method="post" enctype="multipart/form-data">
           <label for="user">User:</label><input class="line" type="text" name="user" value=""><br>
@@ -156,16 +203,17 @@
 
       <!-- Instadb -->
       <?php
-        if($_GET!=[]){
+        if(isset($_POST["del_id"])){
           foreach ($array["instadb"] as $id => $item) {
-            if($_GET["del_id"] == $item["time"] && password_verify($_GET["del_code"],$item["passw"])){
+            if($_POST["del_id"] == $item["time"] && password_verify($_POST["del_code"],$item["passw"])){
               unset($array["instadb"]["$id"]);
             }
           }
+          unset($_POST["del_id"]);
           file_put_contents("instadb.json",json_encode($array));
         }
 
-        if($_POST!=[] && $_POST["user"]!=="" ){
+        if(isset($_POST["user"]) && $_POST["user"]!=="" ){
           $post["time"] = date("YmdHis");
           $post["user"] = $_POST["user"];
           $post["passw"] = password_hash($_POST["passw"], PASSWORD_DEFAULT);
@@ -174,8 +222,8 @@
             $file_ext = explode(".", strtolower($_FILES["img"]["name"]));
             $file_name = $post["time"] .".". $file_ext[1];
             $file = $_FILES["img"]["tmp_name"];
-            $move_ok = move_uploaded_file($file, "img/".$file_name);
-            $post["img_path"] = "img/".$file_name;
+            $move_ok = move_uploaded_file($file, "instafolder/".$file_name);
+            $post["img_path"] = "instafolder/".$file_name;
           }
           else $post["img_path"]=FALSE;
           $array["instadb"][] = $post;
@@ -199,13 +247,14 @@
 
       <!-- DELETE FORM -->
       <div class="del_post">
-        <form action="#" method="get">
+        <form action="#" method="post">
           id: <input type="text" name="del_id">
           delete code: <input type="password" name="del_code">
           <button type="submit" name="submit">delete</button>
         </form>
       </div>
 
+    <?php endif; ?>
     </div>
   </body>
 </html>
