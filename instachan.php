@@ -17,13 +17,20 @@
   if(isset($_POST["new_custom_name"])){
     $config = [];
     $config["custom_name"] = $_POST["new_custom_name"];
+    $config["custom_subname"] = $_POST["new_custom_subname"];
     $config["master_code"] = password_hash($_POST["new_master_code"], PASSWORD_DEFAULT);
     $config["ppp"] = $_POST["new_ppp"];
+    $config["thumbw"] = $_POST["new_thumbw"];
+    $config["bcolor"] = $_POST["new_bcolor"];
+    $config["theme"] = $_POST["new_theme"];
     $config["killme"] = $_POST["new_killme"];
     $config["killdate"] = $_POST["new_killdate"];
-    $config["bcolor"] = $_POST["new_bcolor"];
     file_put_contents("instaconfig.json",json_encode($config));
     unset($_POST["new_custom_name"]);
+  }
+
+  if(file_exists("instaconfig.json")){
+    $_SESSION = json_decode(file_get_contents("instaconfig.json"),TRUE);
   }
  ?>
 
@@ -34,7 +41,7 @@
       :root{
         --max_w: 900px;
         --config_w:450px;
-        --thumb_w: 200px;
+        --thumb_w: <?php echo $_SESSION["thumbw"];?>;
         --color_back: white;
         --color_post_odd: #ecf0f1;
         --color_post_even: #bdc3c7;
@@ -51,11 +58,11 @@
 
       body{
         padding: 10px;
-        /* background-color: red; */
+        background-color: <?php echo $_SESSION["bcolor"];?>;
       }
 
       .instachan_container{
-        margin: 50px auto;
+        margin: 0 auto;
         background-color: var(--color_back);
         border: 1px solid var(--color_bord);
         box-shadow: 5px 5px var(--color_bord);
@@ -148,7 +155,7 @@
 
     </style>
 
-    <title>InstaChan v0.1</title>
+    <title><?php echo (file_exists("instaconfig.json")?$_SESSION["custom_name"]:"InstaConfig"); ?></title>
   </head>
 
   <body>
@@ -157,14 +164,24 @@
     <div class="instachan_container config_container">
       <div class="form_config">
         <h1>ʕ•ᴥ•ʔ InstaConfig</h1>
-        a one file solution for image BBS.
+        InstaChan: a one file solution for image BBS.
         <hr>
         <h3>Instructions:</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         <hr>
+        <h3>Main:</h3>
         <form class="" action="#" method="post">
-          <label for="new_custom_name">Custom Name:</label><input class="line" type="text" name="new_custom_name" value="ᶘ ᵒᴥᵒᶅ InstaChan!"><br>
-          <label for="new_master_code">Master Code:</label><input class="line" type="Password" name="new_master_code" value=""><br>
+          <label for="new_custom_name">Custom Name:</label><input class="line" type="text" name="new_custom_name" value="ᶘ ᵒᴥᵒᶅ InstaChan!">
+          <label for="new_custom_subname">Custom Sub Name:</label><input class="line" type="text" name="new_custom_subname" value="InstaChan: a one file solution for image BBS.">
+          <label for="new_master_code">Master Code:</label><input class="line" type="Password" name="new_master_code" value="">
+
+          <h3>Behaviors:</h3>
+          <label for="new_thumbw">Thumbnail Width:</label>
+          <select class="line" name="new_thumbw">
+            <option value="100px">Small (100px)</option>
+            <option value="200px">Medium (200px)</option>
+            <option value="400px">X-Large (400px)</option>
+          </select>
           <label for="new_ppp">Posts per page:</label>
           <select class="line" name="new_ppp" value="single_page">
             <option value="single_page">single page</option>
@@ -174,10 +191,20 @@
             <option value="50">50 posts/page</option>
             <option value="100">100 posts/page</option>
           </select>
-          <label for="new_killme">Auto Delete after # posts:</label><input class="line" type="text" name="new_killme" value=0><br>
+
+          <h3>Colors & Themes:</h3>
+          <label for="new_bcolor">Background Color:</label><input class="line" type="color" name="new_bcolor" value="#ffffff">
+          <label for="new_theme">Theme:</label>
+          <select class="line" name="new_theme">
+            <option value="1">Theme A</option>
+            <option value="2">Theme B</option>
+            <option value="3">Theme C</option>
+          </select>
+
+          <h3>Auto Delete:</h3>
+          <label for="new_killme">Delete after # posts:</label><input class="line" type="text" name="new_killme" value=999>
           <label for="new_killdate">Expiration date:</label><input class="line" type="date" name="new_killdate" value="2038-01-19">
-          <label for="new_bcolor">Background Color</label><input class="line" type="color" name="new_bcolor" value="#ffffff">
-          <br>
+
           <button class="btn line" type="submit" name="button">Create BBS!</button>
         </form>
       </div>
@@ -189,8 +216,8 @@
 
       <!-- POST FORM -->
       <div class="form_post">
-        <h1>ᶘ ᵒᴥᵒᶅ InstaChan</h1>
-        InstaChan a one file solution for image BBS.
+        <h1><?php echo $_SESSION["custom_name"]; ?></h1>
+        <?php echo $_SESSION["custom_subname"]; ?>
         <hr>
         <form action="#" method="post" enctype="multipart/form-data">
           <label for="user">User:</label><input class="line" type="text" name="user" value=""><br>
@@ -238,7 +265,7 @@
         $array["instadb"] = array_reverse($array["instadb"],TRUE);
         foreach ($array["instadb"] as $id => $item) {
           echo '<div class="post">';
-          echo '<p class="post_header">#' . $id . ' id: ' . $item["time"] . ' >> <strong>' . $item["user"] . ':</strong><br></p>';
+          echo '<p class="post_header">#' . $id . ' id: ' . $item["time"] . ' >>> <strong>' . $item["user"] . ':</strong><br></p>';
           if($item["img_path"] != FALSE) echo '<a href="' . $item["img_path"] . '"><img class="img_thumb" src="' . $item["img_path"] . '"></a>';
           echo '<p class="post_msg">' . $item["msg"] . '</p>';
           echo "</div>";
