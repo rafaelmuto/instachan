@@ -347,7 +347,7 @@
 
       <!-- PAGES INDEX -->
       <?php
-      if($_SESSION!=0){
+      if($_SESSION["ppp"]!=0){
         echo '<div class="page_index">';
         if($_GET["page"]>0){
           echo '<a href="?page=' . ($_GET["page"]-1) . '"><<a> ';
