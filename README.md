@@ -1,4 +1,4 @@
-# ᶘ ᵒᴥᵒᶅ insta_chan WIP
+# ᶘ ᵒᴥᵒᶅ InstaChan WIP
 a one file solution for image BBS ʕ•ᴥ•ʔ
  ---
 InstaChan is in no way a substitute for more robust bbs and chans-a-like.
