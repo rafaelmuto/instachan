@@ -16,6 +16,8 @@
     mkdir("instafolder/");
   }
 
+  if(!isset($_GET["page"])) $_GET["page"] = 0;
+
   if(isset($_POST["new_custom_name"])){
     $config = [];
     $config["custom_name"] = $_POST["new_custom_name"];
@@ -190,6 +192,17 @@
         grid-area: post_msg;
       }
 
+      .page_index{
+        text-align: center;
+        border-bottom: 1px solid var(--color_bord);
+        padding: 5px;
+      }
+
+      .page_index>a{
+        text-decoration: none;
+        color: black;
+      }
+
       .del_post{
         padding: 10px;
         border-top: 0;
@@ -319,10 +332,9 @@
         }
         // BOARD FOR PPP != 0 (multy page)
         else{
-          $page = 0;
           $post_count = 0;
           foreach($array["instadb"] as $id => $item){
-            if(($page*$_SESSION["ppp"]) < $post_count && $post_count <  (($page*$_SESSION["ppp"])+$_SESSION["ppp"])){
+            if(($_GET["page"]*$_SESSION["ppp"]) <= $post_count && $post_count < (($_GET["page"]*$_SESSION["ppp"])+$_SESSION["ppp"])){
               echo '<div class="post"> <p class="post_header">#' . $id . ' id: ' . $item["time"] . ' >>> <strong>' . $item["user"] . ':</strong><br></p>';
               if($item["img_path"] != FALSE) echo '<a href="' . $item["img_path"] . '"><img class="img_thumb" src="' . $item["img_path"] . '"></a>';
               echo '<p class="post_msg">' . $item["msg"] . '</p> </div>';
@@ -336,7 +348,17 @@
       <!-- PAGES INDEX -->
       <?php
       if($_SESSION!=0){
-
+        echo '<div class="page_index">';
+        if($_GET["page"]>0){
+          echo '<a href="?page=' . ($_GET["page"]-1) . '"><<a> ';
+        }
+        for($i = 0; $i < round(count($array["instadb"])/$_SESSION["ppp"]); $i++){
+          echo '<a href="?page=' . $i . '">' . ($i+1) . '<a> ';
+        }
+        if(($_GET["page"]+1)<round(count($array["instadb"])/$_SESSION["ppp"])){
+          echo '<a href="?page=' . ($_GET["page"]+1) . '">><a> ';
+        }
+        echo '</div>';
       }
        ?>
       <!-- DELETE FORM -->
