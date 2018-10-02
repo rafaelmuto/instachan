@@ -23,7 +23,6 @@
     $config["master_code"] = password_hash($_POST["new_master_code"], PASSWORD_DEFAULT);
     $config["ppp"] = $_POST["new_ppp"];
     $config["thumbw"] = $_POST["new_thumbw"];
-    $config["bcolor"] = $_POST["new_bcolor"];
     $config["theme"] = $_POST["new_theme"];
     $config["killme"] = $_POST["new_killme"];
     $config["killdate"] = $_POST["new_killdate"];
@@ -211,6 +210,7 @@
         InstaChan: a one file solution for image BBS.
         <hr>
         <h3>Instructions:</h2>
+        <p>To reset InstaChan or change configs enter admin and master code in the delete form.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         <hr>
         <h3>Main:</h3>
@@ -236,9 +236,7 @@
             <option value="100">100 posts/page</option>
           </select>
 
-          <h3>Colors & Themes:</h3>
-          <label for="new_bcolor">Background Color:</label><input class="line" type="color" name="new_bcolor" value="#ffffff">
-          <label for="new_theme">Theme:</label>
+          <h3>Theme:</h3>
           <select class="line" name="new_theme">
             <option value="vanilla">vanilla</option>
             <option value="watermelon">watermelon</option>
@@ -248,8 +246,7 @@
           <h3>Auto Delete:</h3>
           <label for="new_killme">Delete after # posts:</label><input class="line" type="text" name="new_killme" value=999>
           <label for="new_killdate">Expiration date:</label><input class="line" type="date" name="new_killdate" value="2038-01-19">
-
-          <button class="btn line" type="submit" name="button">Create BBS!</button>
+          <button class="btn line" type="submit" name="button">Create InstaChan!</button>
         </form>
       </div>
 
@@ -274,6 +271,11 @@
 
       <!-- Instadb -->
       <?php
+        if(isset($_POST["del_id"]) && $_POST["del_id"]=="admin" && password_verify($_POST["del_code"],$_SESSION["master_code"])){
+          unlink("instaconfig.json");
+          header("Location:#");
+        }
+
         if(isset($_POST["del_id"])){
           foreach ($array["instadb"] as $id => $item) {
             if($_POST["del_id"] == $item["time"] && password_verify($_POST["del_code"],$item["passw"])){
