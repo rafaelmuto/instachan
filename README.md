@@ -13,22 +13,15 @@ The premisses are as follow:
 Just upload this file to a php able server and watch it burn! ʕ￫ᴥ￩ʔ
 
 Have fun...
+
 ---
 ## Getting started...
 Just put the instachan.php file in a PHP able server and run it!
 It'll run a first time setup and create the needed folder and files.
 To reset just delete the .json files and it will be just as new ;)
 
-    .----------------.
-   /__________________\
-   ||\ ________ /|  _ |
-   || |:      :| |o(_)|
-   || |;-""""-;| |o(_)|
-   || |________| | __ |
-   ||/__________\|[__]|
-   "------------------"
-
-   to delete just delete every thing...
+to delete just delete every thing...
+it's no rocket science... o___O
 
 ---
 
