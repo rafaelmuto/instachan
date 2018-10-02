@@ -35,6 +35,7 @@
   else{
     $_SESSION["theme"] = "vanilla";
   }
+
   // THEME SWITCHING:
   switch ($_SESSION["theme"]){
     case "vanilla":
@@ -43,6 +44,7 @@
       $color_post_even = "#bdc3c7";
       $color_btn = "#e74c3c";
       $color_bord = "#7f8c8d";
+      $color_background = "#ffffff";
     break;
 
     case "watermelon":
@@ -51,6 +53,16 @@
       $color_post_even = "#a3de83";
       $color_btn = "#fa4659";
       $color_bord = "#2eb872";
+      $color_background = "#fa4659";
+    break;
+
+    case "neonsunset":
+      $color_back = "#e01171";
+      $color_post_odd = "#ab0e86";
+      $color_post_even = "#ab0e86";
+      $color_btn = "#e01171";
+      $color_bord = "#59057b";
+      $color_background = "#0f0766";
     break;
 
   }
@@ -69,6 +81,7 @@
         --color_post_even: <?php echo $color_post_even;?>;
         --color_btn: <?php echo $color_btn;?>;
         --color_bord: <?php echo $color_bord;?>;
+        --color_background: <?php echo $color_background;?>;
       }
 
       *{
@@ -80,7 +93,11 @@
 
       body{
         padding: 10px;
-        background-color: <?php echo $_SESSION["bcolor"];?>;
+        background-color: var(--color_background);
+      }
+
+      hr{
+        border: 1px solid var(--color_bord);
       }
 
       .instachan_container{
@@ -106,12 +123,15 @@
       }
 
       input{
+        background-color: var(--color_back);
         border: 0;
-        border-bottom: 1px solid #7f8c8d;
+        border-bottom: 1px solid var(--color_bord);
         margin-bottom: .5em;
       }
 
       textarea{
+        background-color: var(--color_back);
+        border: 1px solid var(--color_bord);
         resize: none;
         width: 100%;
       }
@@ -131,8 +151,8 @@
       .btn:hover {
         cursor: pointer;
         background: var(--color_btn);
-        color: white;
-        border: 1px solid white;
+        color: var(--color_background);
+        border: 1px solid var(--color_background);
       }
 
       .post{
@@ -220,7 +240,7 @@
           <select class="line" name="new_theme">
             <option value="vanilla">vanilla</option>
             <option value="watermelon">watermelon</option>
-            <option value="3">Theme C</option>
+            <option value="neonsunset">neon sunset</option>
           </select>
 
           <h3>Auto Delete:</h3>
