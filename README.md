@@ -29,17 +29,17 @@ it's no rocket science... o___O
 
 - implement security against code injection ಠ▃ಠ
 - auto delete board after n number of post
-- multy page support... I've been thinking in ways to do this...
 - a way to create thumb nails
 - a quote function, to quote other people msg...
 
 ## DONE!
 - ~color themes DONE!~ =D
 - ~configuration at the first run~ DONE!
+- ~multy page support... I've been thinking in ways to do this...~ DONE!
 
 
 ---
 ## History
-
+v1 -- multy page, config on first run, themes
 v0 -- Basic text and image function, JSON "database". Post can be posted and deleted.
       One file, easy deploy...
