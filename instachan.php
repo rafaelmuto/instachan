@@ -32,6 +32,28 @@
   if(file_exists("instaconfig.json")){
     $_SESSION = json_decode(file_get_contents("instaconfig.json"),TRUE);
   }
+  else{
+    $_SESSION["theme"] = "vanilla";
+  }
+  // THEME SWITCHING:
+  switch ($_SESSION["theme"]){
+    case "vanilla":
+      $color_back = "#ffffff";
+      $color_post_odd = "#ecf0f1";
+      $color_post_even = "#bdc3c7";
+      $color_btn = "#e74c3c";
+      $color_bord = "#7f8c8d";
+    break;
+
+    case "watermelon":
+      $color_back = "#feffe4";
+      $color_post_odd = "#a3de83";
+      $color_post_even = "#a3de83";
+      $color_btn = "#fa4659";
+      $color_bord = "#2eb872";
+    break;
+
+  }
  ?>
 
 <html lang="en" dir="ltr">
@@ -42,11 +64,11 @@
         --max_w: 900px;
         --config_w:450px;
         --thumb_w: <?php echo $_SESSION["thumbw"];?>;
-        --color_back: white;
-        --color_post_odd: #ecf0f1;
-        --color_post_even: #bdc3c7;
-        --color_btn: #e74c3c;
-        --color_bord: #7f8c8d;
+        --color_back: <?php echo $color_back;?>;
+        --color_post_odd: <?php echo $color_post_odd;?>;
+        --color_post_even: <?php echo $color_post_even;?>;
+        --color_btn: <?php echo $color_btn;?>;
+        --color_bord: <?php echo $color_bord;?>;
       }
 
       *{
@@ -196,8 +218,8 @@
           <label for="new_bcolor">Background Color:</label><input class="line" type="color" name="new_bcolor" value="#ffffff">
           <label for="new_theme">Theme:</label>
           <select class="line" name="new_theme">
-            <option value="1">Theme A</option>
-            <option value="2">Theme B</option>
+            <option value="vanilla">vanilla</option>
+            <option value="watermelon">watermelon</option>
             <option value="3">Theme C</option>
           </select>
 
