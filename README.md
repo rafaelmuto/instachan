@@ -41,5 +41,6 @@ it's no rocket science... o___O
 ---
 ## History
 v1 -- multy page, config on first run, themes
+
 v0 -- Basic text and image function, JSON "database". Post can be posted and deleted.
       One file, easy deploy...
