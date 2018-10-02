@@ -1,6 +1,8 @@
-<!-- InstaChan-->
+<!-- ᶘ ᵒᴥᵒᶅ InstaChan-->
 <!-- a one file solution for image BBS. -->
 <!-- by: rafaelmuto -->
+<!-- https://github.com/rafaelmuto/instachan -->
+
 <!DOCTYPE html>
 <?php
   if(file_exists("instadb.json")){
