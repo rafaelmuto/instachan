@@ -228,12 +228,12 @@
           </select>
           <label for="new_ppp">Posts per page:</label>
           <select class="line" name="new_ppp" value="single_page">
-            <option value="single_page">single page</option>
-            <option value="5">5 posts/page</option>
-            <option value="10">10 posts/page</option>
-            <option value="20">20 posts/page</option>
-            <option value="50">50 posts/page</option>
-            <option value="100">100 posts/page</option>
+            <option value=0>single page</option>
+            <option value=5>5 posts/page</option>
+            <option value=10>10 posts/page</option>
+            <option value=20>20 posts/page</option>
+            <option value=50>50 posts/page</option>
+            <option value=100>100 posts/page</option>
           </select>
 
           <h3>Theme:</h3>
@@ -309,15 +309,36 @@
       <div class="board">
         <?php
         $array["instadb"] = array_reverse($array["instadb"],TRUE);
-        foreach ($array["instadb"] as $id => $item) {
-          echo '<div class="post">';
-          echo '<p class="post_header">#' . $id . ' id: ' . $item["time"] . ' >>> <strong>' . $item["user"] . ':</strong><br></p>';
-          if($item["img_path"] != FALSE) echo '<a href="' . $item["img_path"] . '"><img class="img_thumb" src="' . $item["img_path"] . '"></a>';
-          echo '<p class="post_msg">' . $item["msg"] . '</p>';
-          echo "</div>";
-        } ?>
+        // BOARD FOR PPP == 0 (single page)
+        if($_SESSION["ppp"]==0){
+          foreach($array["instadb"] as $id => $item){
+            echo '<div class="post"> <p class="post_header">#' . $id . ' id: ' . $item["time"] . ' >>> <strong>' . $item["user"] . ':</strong><br></p>';
+            if($item["img_path"] != FALSE) echo '<a href="' . $item["img_path"] . '"><img class="img_thumb" src="' . $item["img_path"] . '"></a>';
+            echo '<p class="post_msg">' . $item["msg"] . '</p> </div>';
+          }
+        }
+        // BOARD FOR PPP != 0 (multy page)
+        else{
+          $page = 0;
+          $post_count = 0;
+          foreach($array["instadb"] as $id => $item){
+            if(($page*$_SESSION["ppp"]) < $post_count && $post_count <  (($page*$_SESSION["ppp"])+$_SESSION["ppp"])){
+              echo '<div class="post"> <p class="post_header">#' . $id . ' id: ' . $item["time"] . ' >>> <strong>' . $item["user"] . ':</strong><br></p>';
+              if($item["img_path"] != FALSE) echo '<a href="' . $item["img_path"] . '"><img class="img_thumb" src="' . $item["img_path"] . '"></a>';
+              echo '<p class="post_msg">' . $item["msg"] . '</p> </div>';
+            }
+            $post_count++;
+          }
+        }
+        ?>
       </div>
 
+      <!-- PAGES INDEX -->
+      <?php
+      if($_SESSION!=0){
+
+      }
+       ?>
       <!-- DELETE FORM -->
       <div class="del_post">
         <form action="#" method="post">
