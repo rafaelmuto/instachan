@@ -48,6 +48,8 @@
       $color_btn = "#e74c3c";
       $color_bord = "#7f8c8d";
       $color_background = "#ffffff";
+      $color_text = "#000000";
+
     break;
 
     case "watermelon":
@@ -57,6 +59,7 @@
       $color_btn = "#fa4659";
       $color_bord = "#2eb872";
       $color_background = "#fa4659";
+      $color_text = "#000000";
     break;
 
     case "neonsunset":
@@ -66,6 +69,7 @@
       $color_btn = "#e01171";
       $color_bord = "#59057b";
       $color_background = "#0f0766";
+      $color_text = "#ffffff";
     break;
 
   }
@@ -85,6 +89,7 @@
         --color_btn: <?php echo $color_btn;?>;
         --color_bord: <?php echo $color_bord;?>;
         --color_background: <?php echo $color_background;?>;
+        --color_text: <?php echo $color_text;?>;
       }
 
       *{
@@ -110,6 +115,7 @@
         box-shadow: 5px 5px var(--color_bord);
         max-width: var(--max_w);
         border-radius: 20px;
+        color: var(--color_text);
       }
 
       .config_container{
@@ -200,7 +206,7 @@
 
       .page_index>a{
         text-decoration: none;
-        color: black;
+        color: inherit;
       }
 
       .del_post{
@@ -245,8 +251,6 @@
             <option value=5>5 posts/page</option>
             <option value=10>10 posts/page</option>
             <option value=20>20 posts/page</option>
-            <option value=50>50 posts/page</option>
-            <option value=100>100 posts/page</option>
           </select>
 
           <h3>Theme:</h3>
@@ -286,7 +290,7 @@
       <?php
         if(isset($_POST["del_id"]) && $_POST["del_id"]=="admin" && password_verify($_POST["del_code"],$_SESSION["master_code"])){
           unlink("instaconfig.json");
-          header("Location:#");
+          header("Location:instachan.php");
         }
 
         if(isset($_POST["del_id"])){
@@ -352,10 +356,10 @@
         if($_GET["page"]>0){
           echo '<a href="?page=' . ($_GET["page"]-1) . '"><<a> ';
         }
-        for($i = 0; $i < round(count($array["instadb"])/$_SESSION["ppp"]); $i++){
+        for($i = 0; $i <= round(count($array["instadb"])/$_SESSION["ppp"]); $i++){
           echo '<a href="?page=' . $i . '">' . ($i+1) . '<a> ';
         }
-        if(($_GET["page"]+1)<round(count($array["instadb"])/$_SESSION["ppp"])){
+        if(($_GET["page"])<round(count($array["instadb"])/$_SESSION["ppp"])){
           echo '<a href="?page=' . ($_GET["page"]+1) . '">><a> ';
         }
         echo '</div>';
