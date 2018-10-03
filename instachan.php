@@ -38,12 +38,11 @@
   else{
     $_SESSION["theme"] = "vanilla";
   }
-  
+
   if(isset($_POST["del_id"]) && $_POST["del_id"]=="admin" && password_verify($_POST["del_code"],$_SESSION["master_code"])){
     unlink("instaconfig.json");
     header("Location:instachan.php");
   }
-
 
   // THEME SWITCHING:
   switch ($_SESSION["theme"]){
@@ -235,8 +234,8 @@
         InstaChan: a one file solution for image BBS.
         <hr>
         <h3>Instructions:</h2>
-        <p>To reset InstaChan or change configs enter admin and master code in the delete form.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>This is a first time config, in here you can customize your instachan.To reset InstaChan/change configs enter admin and your master code in the delete form.</p>
+        <p>InstaChan will create some files and folders it requires to run: instafolder/ to hold all the images, instadb.json to keep the messages and instaconfig.json to keep your configurations.</p>
         <hr>
         <h3>Main:</h3>
         <form class="" action="#" method="post">
