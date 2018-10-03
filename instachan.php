@@ -38,6 +38,12 @@
   else{
     $_SESSION["theme"] = "vanilla";
   }
+  
+  if(isset($_POST["del_id"]) && $_POST["del_id"]=="admin" && password_verify($_POST["del_code"],$_SESSION["master_code"])){
+    unlink("instaconfig.json");
+    header("Location:instachan.php");
+  }
+
 
   // THEME SWITCHING:
   switch ($_SESSION["theme"]){
@@ -288,11 +294,6 @@
 
       <!-- Instadb -->
       <?php
-        if(isset($_POST["del_id"]) && $_POST["del_id"]=="admin" && password_verify($_POST["del_code"],$_SESSION["master_code"])){
-          unlink("instaconfig.json");
-          header("Location:instachan.php");
-        }
-
         if(isset($_POST["del_id"])){
           foreach ($array["instadb"] as $id => $item) {
             if($_POST["del_id"] == $item["time"] && password_verify($_POST["del_code"],$item["passw"])){
@@ -319,7 +320,6 @@
           $array["instadb"][] = $post;
           file_put_contents("instadb.json",json_encode($array));
         }
-
        ?>
 
       <!-- BOARD -->
