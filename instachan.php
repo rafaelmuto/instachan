@@ -32,6 +32,7 @@
     unset($_POST["new_custom_name"]);
   }
 
+  // LOADING INSTACONFIG.JSON
   if(file_exists("instaconfig.json")){
     $_SESSION = json_decode(file_get_contents("instaconfig.json"),TRUE);
   }
@@ -39,6 +40,7 @@
     $_SESSION["theme"] = "vanilla";
   }
 
+  // DELETING INSTACONFIG.JSON & GOTO CONFIG
   if(isset($_POST["del_id"]) && $_POST["del_id"]=="admin" && password_verify($_POST["del_code"],$_SESSION["master_code"])){
     unlink("instaconfig.json");
     header("Location:instachan.php");
@@ -227,7 +229,7 @@
 
   <body>
     <?php if(!file_exists("instaconfig.json")): ?>
-    <!-- CONFIG -->
+    <!-- PRINTING CONFIG -->
     <div class="instachan_container config_container">
       <div class="form_config">
         <h1>ʕ•ᴥ•ʔ InstaConfig</h1>
@@ -277,7 +279,7 @@
     <?php else: ?>
     <div class="instachan_container">
 
-      <!-- POST FORM -->
+      <!-- PRINTING POST FORM -->
       <div class="form_post">
         <h1><?php echo $_SESSION["custom_name"]; ?></h1>
         <?php echo $_SESSION["custom_subname"]; ?>
@@ -291,7 +293,7 @@
         </form>
       </div>
 
-      <!-- Instadb -->
+      <!-- DELETING POSTS & UPDATE INSTADB.JSON -->
       <?php
         if(isset($_POST["del_id"])){
           foreach ($array["instadb"] as $id => $item) {
@@ -302,7 +304,10 @@
           unset($_POST["del_id"]);
           file_put_contents("instadb.json",json_encode($array));
         }
+      ?>
 
+      <!-- READING/WRITING INSTADB.JSON -->
+      <?php
         if(isset($_POST["user"]) && $_POST["user"]!=="" ){
           $post["time"] = date("YmdHis");
           $post["user"] = $_POST["user"];
@@ -321,7 +326,7 @@
         }
        ?>
 
-      <!-- BOARD -->
+      <!-- PRINTING posts -->
       <div class="board">
         <?php
         $array["instadb"] = array_reverse($array["instadb"],TRUE);
@@ -348,7 +353,7 @@
         ?>
       </div>
 
-      <!-- PAGES INDEX -->
+      <!-- PRINTING PAGES INDEX -->
       <?php
       if($_SESSION["ppp"]!=0){
         echo '<div class="page_index">';
@@ -364,7 +369,7 @@
         echo '</div>';
       }
        ?>
-      <!-- DELETE FORM -->
+      <!-- PRINTING DELETE FORM -->
       <div class="del_post">
         <form action="#" method="post">
           id: <input type="text" name="del_id">
