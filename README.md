@@ -28,13 +28,15 @@ it's no rocket science... o___O
 ## To Do...
 
 - implement security against code injection ಠ▃ಠ
-- auto delete board after n number of post
 - a way to create thumb nails
 - a quote function, to quote other people msg...
+- multi threads... maybe doable with the following ;)
+- implement object oriented programming..
 
 
 ## DONE!
 
+- ~auto delete board after n number of post~
 - ~ERROR: if number of post per page is a multiple of number os posts the pages index gets 1 empty page at the end... and some more...~ DONE!!!
 - ~ERROR: some times we get a error when trying to reset the chan: Warning: Cannot modify header information - headers already sent by~ DONE?
 - ~color themes DONE!~ =D

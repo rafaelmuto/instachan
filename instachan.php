@@ -46,6 +46,14 @@
     header("Location:instachan.php");
   }
 
+  // CHECKING FOR KILL CONDITIONS
+  if(count($array["instadb"]) > $_SESSION["killme"] || date("Y-m-d") === $_SESSION["killdate"]){
+    unlink("instaconfig.json");
+    unlink("instadb.json");
+    unlink("instachan.php");
+    exit();
+  }
+
   // THEME SWITCHING:
   switch ($_SESSION["theme"]){
     case "vanilla":
