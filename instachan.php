@@ -355,10 +355,10 @@
         if($_GET["page"]>0){
           echo '<a href="?page=' . ($_GET["page"]-1) . '"><<a> ';
         }
-        for($i = 0; $i <= round(count($array["instadb"])/$_SESSION["ppp"]); $i++){
+        for($i = 0; $i < ceil(count($array["instadb"])/$_SESSION["ppp"]); $i++){
           echo '<a href="?page=' . $i . '">' . ($i+1) . '<a> ';
         }
-        if(($_GET["page"])<round(count($array["instadb"])/$_SESSION["ppp"])){
+        if(($_GET["page"])<floor(count($array["instadb"])/$_SESSION["ppp"])){
           echo '<a href="?page=' . ($_GET["page"]+1) . '">><a> ';
         }
         echo '</div>';
