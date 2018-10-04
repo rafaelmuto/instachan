@@ -32,6 +32,7 @@ it's no rocket science... o___O
 - a quote function, to quote other people msg...
 - multi threads... maybe doable with the following ;)
 - implement object oriented programming..
+- implement deleting instafolder and files...
 
 
 ## DONE!
