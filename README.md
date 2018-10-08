@@ -1,5 +1,5 @@
 # ᶘ ᵒᴥᵒᶅ InstaChan
-a one file solution for image BBS ʕ•ᴥ•ʔ
+ a one file solution for image BBS ʕ•ᴥ•ʔ
  ---
 InstaChan is in no way a substitute for more robust bbs and chans-a-like.
 But if you need a quick and dirty way to set a BBS for fell people it may just be your chan!
