@@ -47,7 +47,7 @@
   }
 
   // CHECKING FOR KILL CONDITIONS
-  if(count($array["instadb"]) > $_SESSION["killme"] || date("Y-m-d") === $_SESSION["killdate"]){
+  if((isset($_SESSION["killme"]) || isset($_SESSION["killdate"])) && (count($array["instadb"]) > $_SESSION["killme"] || date("Y-m-d") === $_SESSION["killdate"])){
     unlink("instaconfig.json");
     unlink("instadb.json");
     unlink("instachan.php");
