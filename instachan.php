@@ -51,7 +51,7 @@
     unlink("instaconfig.json");
     unlink("instadb.json");
     unlink("instachan.php");
-    exit();
+    die("instachan deleted... ");
   }
 
   // THEME SWITCHING:
@@ -84,6 +84,16 @@
       $color_btn = "#e01171";
       $color_bord = "#59057b";
       $color_background = "#0f0766";
+      $color_text = "#ffffff";
+    break;
+
+    case "grapefruit":
+      $color_back = "#fdb87d";
+      $color_post_odd = "#ff8364";
+      $color_post_even = "#ff8364";
+      $color_btn = "#ff4d4d";
+      $color_bord = "#ff4d4d";
+      $color_background = "#ffe8d5";
       $color_text = "#ffffff";
     break;
 
@@ -151,6 +161,10 @@
         border: 0;
         border-bottom: 1px solid var(--color_bord);
         margin-bottom: .5em;
+      }
+
+      input[type=text]{
+        color: var(--color_text);
       }
 
       textarea{
@@ -273,6 +287,7 @@
             <option value="vanilla">vanilla</option>
             <option value="watermelon">watermelon</option>
             <option value="neonsunset">neon sunset</option>
+            <option value="grapefruit">grape fruit</option>
           </select>
 
           <h3>Auto Delete:</h3>
