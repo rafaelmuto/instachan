@@ -64,7 +64,6 @@
       $color_bord = "#7f8c8d";
       $color_background = "#ffffff";
       $color_text = "#000000";
-
     break;
 
     case "watermelon":
@@ -95,6 +94,26 @@
       $color_bord = "#ff4d4d";
       $color_background = "#ffe8d5";
       $color_text = "#ffffff";
+    break;
+
+    case "old_game":
+      $color_back = "#a7d7c5";
+      $color_post_odd = "#a7d7c5";
+      $color_post_even = "#74b49b";
+      $color_btn = "#5c8d89";
+      $color_bord = "#5c8d89";
+      $color_background = "#d3f6d1";
+      $color_text = "#ffffff";
+    break;
+
+    case "icecream":
+      $color_back = "#ffdfdf";
+      $color_post_odd = "#fff6f6";
+      $color_post_even = "#ffdfdf";
+      $color_btn = "#fb929e";
+      $color_bord = "#fb929e";
+      $color_background = "#aedefc";
+      $color_text = "#000";
     break;
 
   }
@@ -288,6 +307,8 @@
             <option value="watermelon">watermelon</option>
             <option value="neonsunset">neon sunset</option>
             <option value="grapefruit">grape fruit</option>
+            <option value="old_game">old game</option>
+            <option value="icecream">ice cream</option>
           </select>
 
           <h3>Auto Delete:</h3>
