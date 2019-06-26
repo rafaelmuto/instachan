@@ -6,8 +6,8 @@ But if you need a quick and dirty way to set a BBS for fell people it may just b
 The premisses are as follow:
 1) It is free! to use and mod, but if you do so pls mention me ;)
 2) It's a one file does it all project.... it's not meant to be fast or efficient, it's meant as a joke!
-3) I do not take responsibility for any damage this peace os software may cause to you or to your system... you've been warned! o___o
-4) This is not a serious board and it's meat as a quick and cheap way to setup a chan in your server.
+3) I do not take responsibility for any damage this peace of software may cause to you or to your system... you've been warned! o___o
+4) This is not a serious board and it's meant as a quick and cheap way to setup a chan in your server.
 5) This is just a study for a one file image board BBS using PHP and JSON.
 
 Just upload this file to a php able server and watch it burn! ʕ￫ᴥ￩ʔ
@@ -38,7 +38,7 @@ it's no rocket science... o___O
 ## DONE!
 
 - ~auto delete board after n number of post~
-- ~ERROR: if number of post per page is a multiple of number os posts the pages index gets 1 empty page at the end... and some more...~ DONE!!!
+- ~ERROR: if number of post per page is a multiple of number of posts the pages index gets 1 empty page at the end... and some more...~ DONE!!!
 - ~ERROR: some times we get a error when trying to reset the chan: Warning: Cannot modify header information - headers already sent by~ DONE?
 - ~color themes DONE!~ =D
 - ~configuration at the first run~ DONE!
