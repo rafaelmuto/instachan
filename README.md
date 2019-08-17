@@ -2,7 +2,7 @@
  a one file solution for image BBS ʕ•ᴥ•ʔ
  ---
 InstaChan is in no way a substitute for more robust bbs and chans-a-like.
-But if you need a quick and dirty way to set a BBS for fell people it may just be your chan!
+But if you need a quick and dirty way to set a BBS for few people it may just be your chan!
 The premisses are as follow:
 1) It is free! to use and mod, but if you do so pls mention me ;)
 2) It's a one file does it all project.... it's not meant to be fast or efficient, it's meant as a joke!
