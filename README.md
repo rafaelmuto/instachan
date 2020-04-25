@@ -1,27 +1,35 @@
 # ᶘ ᵒᴥᵒᶅ InstaChan
- a one file solution for image BBS ʕ•ᴥ•ʔ
- ---
+
+a one file solution for image BBS ʕ•ᴥ•ʔ
+
+---
+
 InstaChan is in no way a substitute for more robust bbs and chans-a-like.
 But if you need a quick and dirty way to set a BBS for few people it may just be your chan!
 The premisses are as follow:
-1) It is free! to use and mod, but if you do so pls mention me ;)
-2) It's a one file does it all project.... it's not meant to be fast or efficient, it's meant as a joke!
-3) I do not take responsibility for any damage this peace of software may cause to you or to your system... you've been warned! o___o
-4) This is not a serious board and it's meant as a quick and cheap way to setup a chan in your server.
-5) This is just a study for a one file image board BBS using PHP and JSON.
 
-Just upload this file to a php able server and watch it burn! ʕ￫ᴥ￩ʔ
+1. It is free! to use and mod, but if you do so pls mention me ;)
+2. It's a one file does it all project.... it's not meant to be fast or efficient, it's meant as a joke!
+3. I do not take responsibility for any damage this peace of software may cause to you or to your system... you've been warned! o\_\_\_o
+4. This is not a serious board and it's meant as a quick and cheap way to setup a chan in your server.
+5. This is just a study for a one file image board BBS using PHP and JSON.
+
+Just upload this file to a php able server and watch it burn! ʕ ￫ ᴥ ￩ ʔ
 
 Have fun...
 
 ---
+
 ## Getting started...
+
 Just put the instachan.php file in a PHP able server and run it!
 It'll run a first time setup and create the needed folder and files.
 To reset just delete the .json files and it will be just as new ;)
 
 to delete just delete every thing...
-it's no rocket science... o___O
+it's no rocket science... o\_\_\_O
+
+docker: `docker run -d -p 8081:80 --name instachan -v "$PWD":/var/www/html php:7.2-apache`
 
 ---
 
@@ -34,7 +42,6 @@ it's no rocket science... o___O
 - implement object oriented programming..
 - implement deleting instafolder and files...
 
-
 ## DONE!
 
 - ~auto delete board after n number of post~
@@ -44,10 +51,11 @@ it's no rocket science... o___O
 - ~configuration at the first run~ DONE!
 - ~multy page support... I've been thinking in ways to do this...~ DONE!
 
-
 ---
+
 ## History
+
 v1 -- multy page, config on first run, themes
 
 v0 -- Basic text and image function, JSON "database". Post can be posted and deleted.
-      One file, easy deploy...
+One file, easy deploy...
