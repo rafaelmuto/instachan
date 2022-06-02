@@ -1,0 +1,9 @@
+version: '3.5'
+
+services:
+  instachan:
+    image: php:7.2-apache
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "8888:80"
