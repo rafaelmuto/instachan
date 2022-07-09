@@ -43,14 +43,14 @@
   // DELETING INSTACONFIG.JSON & GOTO CONFIG
   if(isset($_POST["del_id"]) && $_POST["del_id"]=="admin" && password_verify($_POST["del_code"],$_SESSION["master_code"])){
     unlink("instaconfig.json");
-    header("Location:instachan.php");
+    header("Location:index.php");
   }
 
   // CHECKING FOR KILL CONDITIONS
   if((isset($_SESSION["killme"]) || isset($_SESSION["killdate"])) && (count($array["instadb"]) > $_SESSION["killme"] || date("Y-m-d") === $_SESSION["killdate"])){
     unlink("instaconfig.json");
     unlink("instadb.json");
-    unlink("instachan.php");
+    unlink("index.php");
     die("instachan deleted... ");
   }
 
